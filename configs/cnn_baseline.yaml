@@ -1,0 +1,44 @@
+# CNN Baseline — reproduces CMD benchmark architecture
+
+experiment:
+  name: "cnn_baseline_Mcdm_TNG"
+  seed: 42
+  device: "auto"
+  use_wandb: false
+
+data:
+  data_dir: "./cmd_data"
+  fields: ["Mcdm"]
+  suite: "IllustrisTNG"
+  set_name: "LH"
+  train_frac: 0.8
+  val_frac: 0.1
+  normalize: true
+  augment: true
+  num_workers: 4
+  seed: 42
+
+model:
+  name: "cnn"
+  params:
+    in_channels: 1
+    n_params: 2
+    hidden_channels: [16, 32, 64, 128, 256, 256]
+    fc_hidden: 256
+    dropout: 0.5
+
+training:
+  epochs: 500
+  batch_size: 32
+  optimizer: "adamw"
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  scheduler: "cosine"
+  warmup_epochs: 10
+  grad_clip: 1.0
+  loss: "gaussian_nll"
+  patience: 50
+  save_every: 50
+
+evaluation:
+  cross_suite_test: false

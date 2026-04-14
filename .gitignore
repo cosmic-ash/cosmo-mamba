@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Data (too large for git)
+cmd_data/
+*.npy
+
+# Trained models / checkpoints
+runs/
+*.pt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Archives
+*.zip
+
+# Misc
+wandb/
+*.log

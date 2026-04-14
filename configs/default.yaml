@@ -1,0 +1,52 @@
+# CosmoMamba: Default configuration for CMD parameter inference
+
+experiment:
+  name: "cosmo_mamba_Mcdm_TNG"
+  seed: 42
+  device: "auto"          # "auto", "cuda", "mps", "cpu"
+  use_wandb: false
+
+data:
+  data_dir: "./cmd_data"  # path to downloaded CMD 2D maps
+  fields: ["Mcdm"]        # dark matter density — start with single field
+  suite: "IllustrisTNG"
+  set_name: "LH"
+  train_frac: 0.8
+  val_frac: 0.1
+  normalize: true
+  augment: true
+  num_workers: 4
+  seed: 42
+
+model:
+  name: "mamba"           # "cnn", "vit", "mamba"
+  params:
+    in_channels: 1
+    n_params: 2
+    img_size: 256
+    patch_size: 16
+    embed_dim: 192
+    depth: 8
+    d_state: 16
+    d_conv: 4
+    expand: 2
+    ffn_ratio: 4.0
+    dropout: 0.1
+
+training:
+  epochs: 500
+  batch_size: 32
+  optimizer: "adamw"
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  scheduler: "cosine"
+  warmup_epochs: 10
+  grad_clip: 1.0
+  loss: "gaussian_nll"    # "gaussian_nll" (heteroscedastic) or "mse"
+  patience: 50            # early stopping patience
+  save_every: 50          # checkpoint every N epochs
+
+evaluation:
+  # Cross-suite robustness test: train on one suite, test on another
+  cross_suite_test: false
+  test_suite: "SIMBA"

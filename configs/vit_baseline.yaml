@@ -1,0 +1,48 @@
+# Vision Transformer Baseline
+
+experiment:
+  name: "vit_baseline_Mcdm_TNG"
+  seed: 42
+  device: "auto"
+  use_wandb: false
+
+data:
+  data_dir: "./cmd_data"
+  fields: ["Mcdm"]
+  suite: "IllustrisTNG"
+  set_name: "LH"
+  train_frac: 0.8
+  val_frac: 0.1
+  normalize: true
+  augment: true
+  num_workers: 4
+  seed: 42
+
+model:
+  name: "vit"
+  params:
+    in_channels: 1
+    n_params: 2
+    img_size: 256
+    patch_size: 16
+    embed_dim: 384
+    depth: 6
+    num_heads: 6
+    mlp_ratio: 4.0
+    dropout: 0.1
+
+training:
+  epochs: 500
+  batch_size: 32
+  optimizer: "adamw"
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  scheduler: "cosine"
+  warmup_epochs: 10
+  grad_clip: 1.0
+  loss: "gaussian_nll"
+  patience: 50
+  save_every: 50
+
+evaluation:
+  cross_suite_test: false

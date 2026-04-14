@@ -1,0 +1,11 @@
+torch>=2.0
+torchvision>=0.15
+numpy>=1.24
+scipy>=1.10
+pyyaml>=6.0
+einops>=0.7
+timm>=0.9
+optuna>=3.0
+wandb>=0.16
+matplotlib>=3.7
+tqdm>=4.65
