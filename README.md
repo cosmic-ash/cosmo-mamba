@@ -1,5 +1,7 @@
 # CosmoMamba
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19572872.svg)](https://doi.org/10.5281/zenodo.19572872)
+
 **State-Space Models for Cosmological Parameter Inference**
 
 First application of selective state-space models (Mamba) to cosmological field analysis, benchmarked against CNNs and Vision Transformers on the [CAMELS Multifield Dataset](https://camels-multifield-dataset.readthedocs.io/).
@@ -131,7 +133,9 @@ If you find this work useful, please cite:
 @article{dongre2025cosmomamba,
   title={CosmoMamba: State-Space Models for Cosmological Parameter Inference from 2D Field Maps},
   author={Dongre, Pratik},
-  year={2025}
+  year={2025},
+  doi={10.5281/zenodo.19572872},
+  url={https://doi.org/10.5281/zenodo.19572872}
 }
 ```
 
